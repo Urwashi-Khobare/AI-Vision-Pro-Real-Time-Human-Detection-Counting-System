@@ -1,0 +1,191 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Smart Surveillance Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="brand">
+        🤖 AI Vision Pro
+    </div>
+
+    <div class="sub-brand">
+        Human Detection System
+    </div>
+
+    <div class="menu">
+
+        <a href="/" class="active">📊 Dashboard</a>
+        <a href="/analytics">📈 Analytics</a>
+        <a href="/camera">📷 Camera</a>
+        <a href="/alerts">🚨 Alerts</a>
+        <a href="/visitors_page">👥 Visitors</a>
+        <a href="/reports">📄 Reports</a>
+        <a href="/settings">⚙ Settings</a>
+
+    </div>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOP HEADER -->
+    <div class="topbar">
+
+        <div>
+            <h1>🚀 AI Smart Monitoring Dashboard</h1>
+            <p>Enterprise Real-Time Surveillance & Analytics</p>
+        </div>
+
+        <div class="status-live">
+            ● LIVE SYSTEM
+        </div>
+
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="cards">
+
+        <div class="card">
+            <h3>👥 People Inside</h3>
+            <p id="in">0</p>
+        </div>
+
+        <div class="card">
+            <h3>🚶 Total Entries</h3>
+            <p id="entry">0</p>
+        </div>
+
+        <div class="card">
+            <h3>🚪 Total Exit</h3>
+            <p id="out">0</p>
+        </div>
+
+        <div class="card">
+            <h3>📷 Cameras</h3>
+            <p>01</p>
+        </div>
+
+        <div class="card">
+            <h3>⚠ Alerts</h3>
+            <p id="alert">0</p>
+        </div>
+
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+        <!-- LIVE FEED -->
+        <div class="panel large">
+            <h2>📷 Live Camera Feed</h2>
+            <img src="{{ url_for('video_feed') }}" class="feed">
+        </div>
+
+        <!-- AI STATUS -->
+        <div class="panel">
+            <h2>🧠 AI Modules</h2>
+
+            <div class="badge green">✔ Human Detection</div>
+            <div class="badge green">✔ Face Recognition</div>
+            <div class="badge green">✔ Intrusion Alert</div>
+            <div class="badge green">✔ Crowd Counting</div>
+            <div class="badge green">✔ Motion Tracking</div>
+            <div class="badge green">✔ Fire Detection</div>
+
+        </div>
+
+        <!-- ALERT BOX -->
+        <div class="panel">
+            <h2>🚨 Recent Alerts</h2>
+
+            <div class="alert-item">⚠ Unauthorized Entry</div>
+            <div class="alert-item">⚠ Crowd Density High</div>
+            <div class="alert-item">⚠ Camera 2 Offline</div>
+
+        </div>
+
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="panel chart-box">
+        <h2>📈 Live Traffic Analytics</h2>
+        <canvas id="chart"></canvas>
+    </div>
+
+</div>
+
+<script>
+let labels = [];
+let values = [];
+
+const ctx = document.getElementById("chart");
+
+const chart = new Chart(ctx,{
+type:"line",
+data:{
+labels:labels,
+datasets:[{
+label:"People Count",
+data:values,
+borderColor:"#22c55e",
+backgroundColor:"rgba(34,197,94,0.2)",
+fill:true,
+tension:0.4,
+borderWidth:3
+}]
+},
+options:{
+responsive:true,
+plugins:{
+legend:{labels:{color:"white"}}
+},
+scales:{
+x:{ticks:{color:"white"}},
+y:{ticks:{color:"white"}}
+}
+}
+});
+
+setInterval(()=>{
+
+fetch('/data')
+.then(res=>res.json())
+.then(data=>{
+
+document.getElementById("in").innerText = data.inside;
+document.getElementById("entry").innerText = data.in;
+document.getElementById("out").innerText = data.out;
+document.getElementById("alert").innerText = data.alerts;
+let t = new Date().toLocaleTimeString();
+
+labels.push(t);
+values.push(data.inside);
+
+if(labels.length > 12){
+labels.shift();
+values.shift();
+}
+
+chart.update();
+
+
+});
+
+},1000);
+</script>
+
+</body>
+</html>

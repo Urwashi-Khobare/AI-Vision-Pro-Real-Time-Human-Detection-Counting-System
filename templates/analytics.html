@@ -1,0 +1,90 @@
+<!-- templates/analytics.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Analytics</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{margin:0;display:flex;background:#0f172a;color:#fff;font-family:Arial}
+.sidebar{
+width:260px;height:100vh;background:#111827;
+padding:20px;position:fixed
+}
+.logo{font-size:24px;color:#22c55e;margin-bottom:30px}
+.menu a{
+display:block;color:#fff;text-decoration:none;
+padding:14px;border-radius:12px;margin-bottom:12px
+}
+.menu a:hover,.active{background:#22c55e}
+.main{margin-left:260px;padding:25px;flex:1}
+.box{
+background:#1e293b;padding:20px;border-radius:18px;
+margin-top:20px
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<div class="logo">🤖 Detection System</div>
+
+<div class="menu">
+<a href="/">📊 Overview</a>
+<a href="/analytics" class="active">📈 Analytics</a>
+<a href="/camera">📷 Camera</a>
+<a href="/settings">⚙ Settings</a>
+</div>
+</div>
+
+<div class="main">
+<h1>📈 Analytics</h1>
+
+<div class="box">
+<canvas id="chart"></canvas>
+</div>
+
+</div>
+
+<script>
+let dataChart={
+labels:[],
+datasets:[{
+label:"People Count",
+data:[],
+borderColor:"#22c55e",
+borderWidth:3,
+fill:false
+}]
+};
+
+const chart=new Chart(document.getElementById("chart"),{
+type:"line",
+data:dataChart
+});
+
+setInterval(()=>{
+fetch('/data')
+.then(r=>r.json())
+.then(data=>{
+let t=new Date().toLocaleTimeString();
+
+dataChart.labels.push(t);
+dataChart.datasets[0].data.push(data.total);
+
+if(dataChart.labels.length>10){
+dataChart.labels.shift();
+dataChart.datasets[0].data.shift();
+}
+
+chart.update();
+});
+},1000);
+</script>
+
+</body>
+</html>

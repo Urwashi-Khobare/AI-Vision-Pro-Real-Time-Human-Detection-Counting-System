@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Settings</title>
+
+<style>
+body{
+margin:0;
+display:flex;
+background:#0f172a;
+color:white;
+font-family:Arial;
+}
+
+.sidebar{
+width:260px;
+height:100vh;
+background:#111827;
+padding:20px;
+}
+
+.menu a{
+display:block;
+padding:14px;
+margin-bottom:12px;
+border-radius:12px;
+background:#1e293b;
+color:white;
+text-decoration:none;
+}
+
+.active{
+background:#22c55e;
+}
+
+.main{
+flex:1;
+padding:30px;
+}
+
+.box{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+select{
+padding:10px;
+width:250px;
+border:none;
+border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>⚙ AI Vision Pro</h2>
+
+<div class="menu">
+<a href="/">Dashboard</a>
+<a href="/analytics">Analytics</a>
+<a href="/camera">Camera</a>
+<a href="/alerts">Alerts</a>
+<a href="/visitors_page">Visitors</a>
+<a href="/reports">Reports</a>
+<a href="/settings" class="active">Settings</a>
+</div>
+
+</div>
+
+<div class="main">
+
+<h1>⚙ System Settings</h1>
+
+<div class="box">
+<h3>Detection Confidence</h3>
+
+<select>
+<option>0.30</option>
+<option>0.40</option>
+<option selected>0.50</option>
+<option>0.60</option>
+<option>0.70</option>
+</select>
+
+</div>
+
+<div class="box">
+<h3>Alert Threshold</h3>
+
+<select>
+<option>5 People</option>
+<option selected>10 People</option>
+<option>20 People</option>
+<option>50 People</option>
+</select>
+
+</div>
+
+<div class="box">
+<h3>Camera Status</h3>
+<p>🟢 Connected</p>
+</div>
+
+</div>
+
+</body>
+</html>

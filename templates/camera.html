@@ -1,0 +1,58 @@
+<!-- templates/camera.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Camera</title>
+
+<style>
+body{margin:0;display:flex;background:#0f172a;color:#fff;font-family:Arial}
+.sidebar{
+width:260px;height:100vh;background:#111827;
+padding:20px;position:fixed
+}
+.logo{font-size:24px;color:#22c55e;margin-bottom:30px}
+.menu a{
+display:block;color:#fff;text-decoration:none;
+padding:14px;border-radius:12px;margin-bottom:12px
+}
+.menu a:hover,.active{background:#22c55e}
+.main{margin-left:260px;padding:25px;flex:1}
+.box{
+background:#1e293b;padding:20px;border-radius:18px;
+margin-top:20px
+}
+img{
+width:100%;
+border-radius:18px
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<div class="logo">🤖 Detection System</div>
+
+<div class="menu">
+<a href="/">📊 Overview</a>
+<a href="/analytics">📈 Analytics</a>
+<a href="/camera" class="active">📷 Camera</a>
+<a href="/settings">⚙ Settings</a>
+</div>
+</div>
+
+<div class="main">
+
+<h1>📷 Live Camera</h1>
+
+<div class="box">
+<img src="{{ url_for('video_feed') }}">
+</div>
+
+</div>
+
+</body>
+</html>

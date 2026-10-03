@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Reports</title>
+
+<style>
+body{
+margin:0;
+display:flex;
+background:#0f172a;
+color:white;
+font-family:Arial;
+}
+
+.sidebar{
+width:260px;
+height:100vh;
+background:#111827;
+padding:20px;
+}
+
+.menu a{
+display:block;
+padding:14px;
+margin-bottom:12px;
+border-radius:12px;
+background:#1e293b;
+color:white;
+text-decoration:none;
+}
+
+.active{
+background:#22c55e;
+}
+
+.main{
+flex:1;
+padding:30px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>📄 AI Vision Pro</h2>
+
+<div class="menu">
+<a href="/">Dashboard</a>
+<a href="/analytics">Analytics</a>
+<a href="/camera">Camera</a>
+<a href="/alerts">Alerts</a>
+<a href="/visitors_page">Visitors</a>
+<a href="/reports" class="active">Reports</a>
+<a href="/settings">Settings</a>
+</div>
+
+</div>
+
+<div class="main">
+
+<h1>📄 Reports</h1>
+
+<a href="/export">
+
+<button style="
+padding:15px 25px;
+background:#22c55e;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+margin-top:20px;
+">
+
+⬇ Download CSV Report
+
+</button>
+
+</a>
+
+<div class="card">
+<h2>Total Visitors Today</h2>
+<h3 id="visitors">0</h3>
+</div>
+
+<div class="card">
+<h2>Total Entries</h2>
+<h3 id="entries">0</h3>
+</div>
+
+<div class="card">
+<h2>Total Exits</h2>
+<h3 id="exits">0</h3>
+</div>
+
+</div>
+
+<script>
+
+fetch('/data')
+.then(r=>r.json())
+.then(data=>{
+
+document.getElementById("visitors").innerText=data.total;
+document.getElementById("entries").innerText=data.in;
+document.getElementById("exits").innerText=data.out;
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+﻿venv/
+finalenv/
+__pycache__/
+*.pyc
+*.pyd
+*.dll
+*.db
+*.csv
+output/
+static/visitors/
+.env

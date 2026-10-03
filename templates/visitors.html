@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Visitors</title>
+
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:#1e293b;
+}
+
+th,td{
+padding:12px;
+border:1px solid #334155;
+text-align:center;
+}
+
+th{
+background:#22c55e;
+}
+</style>
+
+</head>
+<body>
+
+<h1>👥 Visitor History</h1>
+
+<input
+type="text"
+id="search"
+placeholder="Search Visitor ID"
+style="
+padding:10px;
+width:300px;
+margin-bottom:20px;
+border-radius:10px;
+">
+
+<table>
+
+<thead>
+<tr>
+<th>Photo</th>
+<th>Tracker ID</th>
+<th>Entries</th>
+<th>Exits</th>
+<th>Inside</th>
+<th>First Seen</th>
+<th>Last Seen</th>
+</tr>
+</thead>
+
+<tbody id="tableData">
+</tbody>
+
+</table>
+
+<script>
+
+function loadVisitors(){
+
+fetch('/visitors')
+.then(res=>res.json())
+.then(data=>{
+
+let html="";
+
+data.forEach(v=>{
+
+html += `
+<tr>
+
+<td>
+<img src="/static/visitors/${v.tracker_id}.jpg"
+width="80"
+height="80"
+style="border-radius:10px">
+</td>
+
+<td>${v.tracker_id}</td>
+<td>${v.entries}</td>
+<td>${v.exits}</td>
+<td>${v.inside ? "YES" : "NO"}</td>
+<td>${v.first_seen}</td>
+<td>${v.last_seen}</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("tableData").innerHTML = html;
+
+});
+
+}
+
+loadVisitors();
+
+setInterval(loadVisitors,2000);
+
+const search =
+document.getElementById("search");
+
+search.addEventListener("keyup",()=>{
+
+const value =
+search.value.toLowerCase();
+
+const rows =
+document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.style.display =
+row.innerText.toLowerCase()
+.includes(value)
+? ""
+: "none";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

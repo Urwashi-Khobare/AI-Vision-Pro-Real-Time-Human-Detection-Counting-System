@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>🚀 Dashboard</h1>
+
+<div class="cards">
+    <div class="card in">
+        <h3>IN</h3>
+        <h1 id="in">0</h1>
+    </div>
+
+    <div class="card out">
+        <h3>OUT</h3>
+        <h1 id="out">0</h1>
+    </div>
+
+    <div class="card total">
+        <h3>TOTAL</h3>
+        <h1 id="total">0</h1>
+    </div>
+</div>
+
+<div class="grid">
+
+    <div class="camera-box">
+        <h2>📷 Live Camera</h2>
+        <img src="{{ url_for('video_feed') }}">
+    </div>
+
+    <div class="status-box">
+        <h2>Status</h2>
+        <p class="green">● Running</p>
+        <ul>
+            <li>✔ Detection Active</li>
+            <li>✔ Camera Connected</li>
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Vision Pro Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#020617,#0f172a,#111827);
+overflow:hidden;
+}
+
+/* Background Glow */
+body::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:#22c55e;
+filter:blur(180px);
+top:-100px;
+left:-100px;
+opacity:.25;
+}
+
+body::after{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:#3b82f6;
+filter:blur(180px);
+bottom:-100px;
+right:-100px;
+opacity:.20;
+}
+
+/* Login Card */
+.login-box{
+position:relative;
+z-index:2;
+width:420px;
+padding:40px;
+border-radius:24px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(16px);
+box-shadow:0 20px 60px rgba(0,0,0,.45);
+border:1px solid rgba(255,255,255,.08);
+color:white;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.logo{
+font-size:42px;
+text-align:center;
+margin-bottom:10px;
+}
+
+.title{
+font-size:34px;
+font-weight:700;
+text-align:center;
+color:#22c55e;
+margin-bottom:6px;
+}
+
+.subtitle{
+text-align:center;
+color:#cbd5e1;
+margin-bottom:28px;
+font-size:15px;
+}
+
+.input-box{
+margin-bottom:18px;
+}
+
+.input-box label{
+display:block;
+margin-bottom:8px;
+color:#cbd5e1;
+font-size:14px;
+}
+
+.input-box input{
+width:100%;
+padding:14px;
+border:none;
+outline:none;
+border-radius:12px;
+background:#1e293b;
+color:white;
+font-size:15px;
+}
+
+.input-box input:focus{
+box-shadow:0 0 0 2px #22c55e;
+}
+
+.login-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#22c55e;
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+margin-top:8px;
+}
+
+.login-btn:hover{
+background:#16a34a;
+transform:translateY(-2px);
+}
+
+.error{
+background:#7f1d1d;
+padding:12px;
+border-radius:10px;
+margin-bottom:16px;
+color:#fecaca;
+text-align:center;
+font-size:14px;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+font-size:13px;
+color:#94a3b8;
+}
+
+</style>
+</head>
+<body>
+
+<div class="login-box">
+
+<div class="logo">🤖</div>
+<div class="title">AI Vision Pro</div>
+<div class="subtitle">Smart Human Detection & Monitoring System</div>
+
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
+<form method="POST">
+
+<div class="input-box">
+<label>Username</label>
+<input type="text" name="username" placeholder="Enter Username" required>
+</div>
+
+<div class="input-box">
+<label>Password</label>
+<input type="password" name="password" placeholder="Enter Password" required>
+</div>
+
+<button type="submit" class="login-btn">🔐 Login Securely</button>
+
+</form>
+
+<div class="footer">
+Enterprise Real-Time Surveillance Dashboard
+</div>
+
+</div>
+
+</body>
+</html>

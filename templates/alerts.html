@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Alerts</title>
+
+<style>
+body{
+margin:0;
+display:flex;
+background:#0f172a;
+color:white;
+font-family:Arial;
+}
+
+.sidebar{
+width:260px;
+height:100vh;
+background:#111827;
+padding:20px;
+}
+
+.menu a{
+display:block;
+padding:14px;
+margin-bottom:12px;
+border-radius:12px;
+background:#1e293b;
+color:white;
+text-decoration:none;
+}
+
+.active{
+background:#22c55e;
+}
+
+.main{
+flex:1;
+padding:30px;
+}
+
+.alert{
+background:#7f1d1d;
+padding:20px;
+margin-bottom:15px;
+border-radius:12px;
+font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>🚨 AI Vision Pro</h2>
+
+<div class="menu">
+<a href="/">Dashboard</a>
+<a href="/analytics">Analytics</a>
+<a href="/camera">Camera</a>
+<a href="/alerts" class="active">Alerts</a>
+<a href="/visitors_page">Visitors</a>
+<a href="/reports">Reports</a>
+<a href="/settings">Settings</a>
+</div>
+
+</div>
+
+<div class="main">
+
+<h1>🚨 Alert Center</h1>
+
+<div class="alert">⚠ Crowd Density High</div>
+<div class="alert">⚠ Unauthorized Entry</div>
+<div class="alert">⚠ Camera Offline</div>
+
+</div>
+
+</body>
+</html>
